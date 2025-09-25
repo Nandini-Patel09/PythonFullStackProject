@@ -68,11 +68,17 @@ pip install -r requirements.txt
 - Run this SQL command:
 
 ---sql
-CREATE TABLE Finance (
+CREATE TABLE finusers (
+    user_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE fintransactions (
     transaction_id SERIAL PRIMARY KEY,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
-    email VARCHAR(50),
+    user_id INT REFERENCES finusers(user_id) ON DELETE CASCADE,
     date DATE NOT NULL,
     type VARCHAR(20) NOT NULL CHECK (type IN ('income', 'expense')),
     category VARCHAR(50) NOT NULL,
