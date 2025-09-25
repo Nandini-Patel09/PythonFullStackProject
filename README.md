@@ -68,7 +68,7 @@ pip install -r requirements.txt
 - Run this SQL command:
 
 ---sql
-CREATE TABLE finusers (
+CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
@@ -76,7 +76,7 @@ CREATE TABLE finusers (
     password TEXT NOT NULL
 );
 
-CREATE TABLE fintransactions (
+CREATE TABLE transactions (
     transaction_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES finusers(user_id) ON DELETE CASCADE,
     date DATE NOT NULL,
